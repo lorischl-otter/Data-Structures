@@ -21,6 +21,8 @@ the Queue?
 """
 from singly_linked_list import LinkedList
 # Second implementation, with singly linked lists:
+# Queue will not be as efficient as stack, bc must use opposite ends
+# did not need to use 'val' -- could have just returned the .remove_head()
 
 
 class Queue:
@@ -32,13 +34,13 @@ class Queue:
         return self.size
 
     def enqueue(self, value):
-        self.storage.add_to_tail(value)
+        self.storage.add_to_tail(value)  # O(1)
         self.size += 1
 
     def dequeue(self):
         if self.size > 0:
-            val = self.storage.head.get_value()
-            self.storage.remove_head()
+            val = self.storage.head.get_value()  # didn't need this
+            self.storage.remove_head()  # O(1) # could just return this
             self.size -= 1
             return val
         else:
@@ -66,3 +68,22 @@ class Queue:
 #             return val
 #         else:
 #             return None
+
+
+# Lecture implementation
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = []
+
+#     def __len__(self):
+#         return len(self.storage)
+
+#     def enqueue(self, value):
+#         self.storage.append(value) # O(1)
+#         # self.storage.insert(0, value) # O(n)
+
+#     def dequeue(self):
+#         if len(self.storage) > 0:
+#             return self.storage.pop(0) # O(n)
+#             # return self.storage.pop # O(1)
